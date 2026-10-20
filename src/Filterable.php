@@ -17,7 +17,7 @@ trait Filterable
      * @param array|null $filterAttributes
      * @return mixed
      */
-    public function scopeFilterable($query, array $filterAttributes = null)
+    public function scopeFilterable($query, ?array $filterAttributes = null)
     {
         $filterable = $this->getFilterable();
         $attributes = $this->getFilterAttributes($filterAttributes);
@@ -106,7 +106,7 @@ trait Filterable
         return $this->filterable ?? [];
     }
 
-    protected function getFilterAttributes(array $attributes = null)
+    protected function getFilterAttributes(?array $attributes = null)
     {
         $requestKeyName = config('filterable.input_keys.filter', 'filter');
 
@@ -187,7 +187,7 @@ trait Filterable
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string|null $search
      */
-    public function scopeSearchable(Builder $query, string $search = null)
+    public function scopeSearchable(Builder $query, ?string $search = null)
     {
         $search = $this->getSearchStr($search);
 
@@ -220,7 +220,7 @@ trait Filterable
      * @param string|null $search
      * @return array|\Illuminate\Http\Request|null|string
      */
-    protected function getSearchStr(string $search = null)
+    protected function getSearchStr(?string $search = null)
     {
         $requestKeyName = config('filterable.input_keys.search', 'q');
 
